@@ -17,7 +17,7 @@ const Dashboard = () => {
       const json = await res.json();
 
       if (json["status"] === true) {
-        router.replace("/");
+        router.replace("/login");
       } else {
         alert(json["message"]);
       }

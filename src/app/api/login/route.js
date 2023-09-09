@@ -20,36 +20,23 @@ export async function POST(req, res) {
   }
 }
 
-export async function GET(req, res) {
-  await TokenCookie();
-  const cookieStore = cookies();
-  const token = cookieStore.get("token");
-  cookies().delete("token");
-  // return NextResponse.json({ status: true, message: "Request Completed" });
-  return NextResponse.json(
-    { status: true, message: "Logout" },
-    {
-      status: 200,
-      headers: {
-        "content-type": "application/json",
-        "Set-Cookie": `token=${token.value}; Path=/; Max-Age=0`,
-      },
-    }
-  );
-}
-
-// export async function GET(request) {
-//   try {
-//     const cookieStore = cookies();
-//     const token = cookieStore.get("token");
-//     cookies().delete("token");
-
-//   } catch (error) {
-//     return NextResponse.json({
-//       status: 400,
-//       headers: {
-//         "content-type": "application/json",
-//       },
-//     });
-//   }
+// export async function GET(req, res) {
+//   cookies().delete("token");
+//   return NextResponse.json({ status: true, message: "Request Completed" });
 // }
+
+export async function GET(request) {
+  try {
+    let Cookie = await TokenCookie();
+    const cookieStore = cookies(Cookie);
+    const token = cookieStore.get("token");
+    cookies().delete(token);
+
+    return NextResponse.json({ status: true, message: "logout" });
+  } catch (error) {
+    return NextResponse.json({
+      status: 400,
+      message: "logout fail",
+    });
+  }
+}
