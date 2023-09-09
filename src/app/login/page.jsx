@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { sendMail } from "@/util/apiCall";
 
 const LoginPage = () => {
   const router = useRouter();
