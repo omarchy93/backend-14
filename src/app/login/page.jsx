@@ -75,7 +75,7 @@ const LoginPage = () => {
           onChange={(e) => {
             handelChange("password", e.target.value);
           }}
-          type="text"
+          type="password"
           placeholder="password"
           className="border-[1px] py-2 border-emerald-400 rounded-lg p-2  "
         />
